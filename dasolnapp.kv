@@ -1,0 +1,482 @@
+MDFloatLayout:
+    orientation: 'vertical'
+
+    MDTopAppBar:
+        title: "Solutions Calculator"
+
+    MDTabs:
+        id: tabs
+
+        # ids for tab 1
+        m1_input: m1_input
+        v1_input: v1_input
+        m2_input: m2_input
+        v2_input: v2_input
+        mv_formula: mv_formula
+        ratpro: ratpro
+        output: output
+        formula_numerator: formula_numerator
+        formula_line: formula_line
+        formula_denominator: formula_denominator
+        input_error: input_error
+        egg_question_text1: egg_question1
+        egg_answer_text1: egg_answer1
+
+        # ids for tab 2
+        egg_question_text2: egg_question_text2
+        egg_answer_text2: egg_answer_text2
+        ratio_input_A: ratio_input_A
+        ratio_input_B: ratio_input_B
+        end_vol_input: end_vol_input
+        ratio_fmla: ratio_fmla
+        part_tot: part_tot
+        soln_A_output: soln_A_output
+        soln_B_output: soln_B_output
+        ratio_err_msg: ratio_err_msg
+
+        # ids for tab 3
+        egg_question_text3: egg_question_text3
+        egg_answer_text3: egg_answer_text3
+        pct_input: pct_input
+        final_vol_input: final_vol_input
+        calc_display: calc_display
+        gram_output: gram_output
+        soln_B_output: soln_B_output
+        gram_err_msg: gram_err_msg
+
+####### Main Layout Logic for Tab 1 #######
+
+        Tabs:
+            id: tab_1
+            title: 'M1V1=M2V2'
+
+            MDLabel:
+                text: "[M1](V1)=[M2](V2) Calculator"
+                pos_hint: {'center_x': 0.5,'center_y': 0.92}
+                font_size: 70
+                size_hint: 0.8, 0.4
+                theme_text_color: "Custom"
+                text_color: 0, 0.4, 1
+                halign: "center"
+
+            MDLabel:
+                text: "SciApp by: Esteban C. Loetz"
+                pos_hint: {'center_x': 0.5,'center_y': 0.87}
+                font_size: 40
+                size_hint: 0.50, 0.20
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0.5
+                halign: "center"
+
+            Button:
+                id: ratpro
+                background_normal: 'rattusprogress.png'
+                border: 0,0,0,0
+                size_hint: (0.25,0.12)
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "center_y":0.77}
+                on_press: app.egg_button_on_release()
+
+            MDLabel:
+                id: egg_question1
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.2, "center_y":0.77}
+
+            MDLabel:
+                id: egg_answer1
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.8, "center_y":0.77}
+
+            MDTextField:
+                id: m1_input
+                hint_text:"  Conc.1"
+                halign: "center"
+                size_hint_x: 0.17
+                pos_hint: {"center_x": 0.15, "center_y":0.55}
+                font_size: 60
+
+            MDLabel:
+                text: 'x'
+                font_size: 45
+                halign: "center"
+                pos_hint: {"center_x": 0.25, "center_y":0.55}
+                theme_text_color: "Custom"
+                color: 1, 0.6, 0
+
+            MDTextField:
+                id: v1_input
+                hint_text:"   Vol.1"
+                halign: "center"
+                size_hint_x: 0.17
+                pos_hint: {"center_x": 0.35, "center_y":0.55}
+                font_size: 60
+                
+            MDLabel:
+                text: '='
+                font_size: 50
+                halign: "center"
+                pos_hint: {"center_x": 0.50, "center_y":0.55}
+                theme_text_color: "Custom"
+                color: 1, 0.6, 0  
+
+            MDTextField:
+                id: m2_input
+                hint_text: " Conc.2"
+                halign: "center"
+                size_hint_x: 0.17
+                pos_hint: {"center_x": 0.65, "center_y":0.55}
+                font_size: 60
+                
+            MDLabel:
+                text: 'x'
+                font_size: 45
+                halign: "center"
+                pos_hint: {"center_x": 0.75, "center_y":0.55}
+                theme_text_color: "Custom"
+                color: 1, 0.6, 0
+
+            MDTextField:
+                id: v2_input
+                hint_text:"  Vol.2"
+                halign: "center"
+                size_hint_x: 0.17
+                pos_hint: {"center_x": 0.85, "center_y":0.55}
+                font_size: 60
+
+            MDLabel:
+                id: formula_numerator
+                text: ""
+                halign: "center"
+                size_hint_x: 0.30
+                pos_hint: {"center_x": 0.50, "center_y":0.47}
+                font_size: 55
+                color: 1, 0.6, 0
+
+            MDLabel:
+                id: formula_line
+                text: ""
+                halign: "center"
+                size_hint_x: 0.40
+                pos_hint: {"center_x": 0.45, "center_y":0.46}
+                font_size: 55
+                color: 1, 0.6, 0
+
+            MDLabel:
+                id: formula_denominator
+                text: ""
+                halign: "center"
+                size_hint_x: 0.30
+                pos_hint: {"center_x": 0.50, "center_y":0.42}
+                font_size: 55
+                color: 1, 0.6, 0  
+
+            MDLabel:
+                id: mv_formula
+                text: ' Formula:\n(M1)x(V1) = (M2)x(V2)'
+                font_size: 55
+                halign: "center"
+                pos_hint: {"center_x": 0.50, "center_y":0.46}
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: output
+                text: ""
+                halign: "center"
+                size_hint_x: 0.35
+                pos_hint: {"center_x": 0.50, "center_y":0.37}
+                font_size: 55
+                color: 1, 0, 0.5
+
+            MDRectangleFlatButton:
+                text: "Calculate Missing Value"
+                pos_hint: {'center_x': 0.5,'center_y': 0.26}
+                font_size: 60
+                size_hint: 0.7, 0.12
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0, 0.4, 1
+                on_press: app.calc_miss_quant()
+
+            MDLabel:
+                id: input_error
+                text: ''
+                font_size: 55
+                halign: "center"
+                pos_hint: {"center_x": 0.50, "center_y":0.37}
+
+            MDRectangleFlatButton:
+                text: "Reset"
+                pos_hint: {'center_x': 0.5,'center_y': 0.14}
+                font_size: 40
+                size_hint: 0.2, 0.04
+                theme_text_color: "Custom"
+                text_color: 0, 0.4, 1
+                halign: "center"
+                on_press: app.m1v1m2v2_reset_func()
+
+####### Main Layout Logic for Tab 2 #######
+
+        Tabs:
+            id: tab_2
+            title: '2 Variable Ratio'
+
+            MDLabel:
+                text: "Ratio Amounts for Total Volume"
+                pos_hint: {'center_x': 0.5,'center_y': 0.92}
+                font_size: 70
+                size_hint: 0.8, 0.4
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0.5
+                halign: "center"
+
+            MDLabel:
+                text: "SciApp by: Esteban C. Loetz"
+                pos_hint: {'center_x': 0.5,'center_y': 0.87}
+                font_size: 40
+                size_hint: 0.50, 0.20
+                theme_text_color: "Custom"
+                text_color: 1, 0.98, 0.63
+                halign: "center"
+
+            Button:
+                background_normal: 'SolnOFlasks.png'
+                border: 0,0,0,0
+                size_hint: (0.25,0.12)
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "center_y":0.77}
+                on_press: app.egg_button_on_release2()
+
+            MDLabel:
+                id: egg_question_text2
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.2, "center_y":0.77}
+
+            MDLabel:
+                id: egg_answer_text2
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.8, "center_y":0.77}
+
+            TextInput:
+                id: end_vol_input
+                hint_text: "Enter Final Vol"
+                pos_hint: {'center_x': 0.5,'center_y': 0.65}
+                font_size: 60
+                size_hint: 0.7, 0.05
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.23, 0.67, 0.93
+
+            TextInput:
+                id: ratio_input_A
+                hint_text: "Enter Ratio of Soln A"
+                pos_hint: {'center_x': 0.5,'center_y': 0.58}
+                font_size: 60
+                size_hint: 0.7, 0.05
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.23, 0.67, 0.93
+
+            TextInput:
+                id: ratio_input_B
+                hint_text: "Enter Ratio of Soln B"
+                pos_hint: {'center_x': 0.5,'center_y': 0.51}
+                font_size: 60
+                size_hint: 0.7, 0.05
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.23, 0.67, 0.93
+
+            MDLabel:
+                id: ratio_fmla
+                text: "TotalParts = TotalVol/(SolnA+SolnB)\nVol SolnA = TotalParts*SolnA\nVol SolnB = TotalParts*SolnB"
+                pos_hint: {'center_x': 0.5,'center_y': 0.37}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: part_tot
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: soln_A_output
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.37}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: soln_B_output
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.34}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: ratio_err_msg
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                font_size: 50
+                size_hint: 0.7, 0.09
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.08, 0.96, .93
+
+            MDRectangleFlatButton:
+                text: "Calculate Ratio Amounts"
+                pos_hint: {'center_x': 0.5,'center_y': 0.26}
+                font_size: 60
+                size_hint: 0.7, 0.12
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0.5
+                halign: "center"
+                on_press: app.calc_ratio_amounts()
+
+            MDRectangleFlatButton:
+                text: "Reset"
+                pos_hint: {'center_x': 0.5,'center_y': 0.14}
+                font_size: 40
+                size_hint: 0.2, 0.04
+                theme_text_color: "Custom"
+                text_color: 1, 0, 0.5
+                halign: "center"
+                on_press: app.ratio_reset_func()
+
+####### Main Layout Logic for Tab 3 #######
+
+        Tabs:
+            id: tab_3
+            title: 'Grams for % Soln'
+
+            MDLabel:
+                text: "Grams Amount for Percent Soln"
+                pos_hint: {'center_x': 0.5,'center_y': 0.92}
+                font_size: 70
+                size_hint: 0.8, 0.4
+                theme_text_color: "Custom"
+                text_color: 1, 0.98, 0.63
+                halign: "center"
+
+            MDLabel:
+                text: "SciApp by: Esteban C. Loetz"
+                pos_hint: {'center_x': 0.5,'center_y': 0.87}
+                font_size: 40
+                size_hint: 0.50, 0.20
+                theme_text_color: "Custom"
+                text_color: 0, 0.4, 1
+                halign: "center"
+
+            Button:
+                background_normal: 'FlaskIcon.png'
+                border: 0,0,0,0
+                size_hint: (0.25,0.12)
+                halign: "center"
+                pos_hint: {"center_x": 0.5, "center_y":0.77}
+                on_press: app.egg_button_on_release3()
+
+            MDLabel:
+                id: egg_question_text3
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.2, "center_y":0.77}
+
+            MDLabel:
+                id: egg_answer_text3
+                text: ''
+                font_size: 35
+                halign: "center"
+                pos_hint: {"center_x": 0.8, "center_y":0.77}
+
+            TextInput:
+                id: pct_input
+                hint_text: "Enter Percent Value of Soln"
+                pos_hint: {'center_x': 0.5,'center_y': 0.63}
+                font_size: 60
+                size_hint: 0.7, 0.05
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.23, 0.67, 0.93
+
+            TextInput:
+                id: final_vol_input
+                hint_text: "Enter Final Volume of Soln"
+                pos_hint: {'center_x': 0.5,'center_y': 0.53}
+                font_size: 60
+                size_hint: 0.7, 0.05
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.23, 0.67, 0.93
+
+            MDLabel:
+                id: calc_display
+                text: "(Final Vol * Pct Val)/100 =\ngrams"
+                pos_hint: {'center_x': 0.5,'center_y': 0.4}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: gram_output
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                font_size: 60
+                size_hint: 0.8, 0.2
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 1, 1, 1, 0.3
+
+            MDLabel:
+                id: gram_err_msg
+                text: ""
+                pos_hint: {'center_x': 0.5,'center_y': 0.35}
+                font_size: 50
+                size_hint: 0.7, 0.09
+                halign: "center"
+                theme_text_color: "Custom"
+                text_color: 0.08, 0.96, .93
+
+            MDRectangleFlatButton:
+                text: "Calculate Grams Needed"
+                pos_hint: {'center_x': 0.5,'center_y': 0.26}
+                font_size: 60
+                size_hint: 0.7, 0.12
+                theme_text_color: "Custom"
+                text_color: 1, 0.98, 0.63
+                halign: "center"
+                on_press: app.calc_gram_amount()
+
+            MDRectangleFlatButton:
+                text: "Reset"
+                pos_hint: {'center_x': 0.5,'center_y': 0.14}
+                font_size: 40
+                size_hint: 0.2, 0.04
+                theme_text_color: "Custom"
+                text_color: 1, 0.98, 0.63
+                halign: "center"
+                on_press: app.gram_reset_func()
